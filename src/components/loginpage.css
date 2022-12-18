@@ -1,0 +1,58 @@
+/* body{
+    position:relative;
+}
+.footer{
+    position:absolute;
+    bottom:0;
+    /* top:0; */
+
+/* }  */
+h1{
+    font-family:"Tenor Sans";
+    font-weight: lighter;
+}
+h6{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing:0.2em;
+    font-size:0.8rem;
+}
+.ca{
+    color:black;
+    /* color:#98a06b; */
+
+}
+.caToggle{
+    color:white;
+    /* color:black; */
+}
+a:hover{
+    text-decoration:none
+
+}
+.login_container{
+    max-width:350px;
+    display:flex;
+    flex-direction:column;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:100px;
+}
+.login_container input{
+    height:50px;
+    border:1px solid #e6e4e4;
+    padding:10px;
+    outline:none;
+}
+.login_container input:hover{
+    border:1px solid black;
+}
+.login_head{
+    margin-top:100px;
+}
+.sign_In_Button{
+    background-color:black;
+    color:white;
+    height:100px;
+    padding:13px;
+    border-radius:1rem;
+}

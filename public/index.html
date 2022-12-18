@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+    <script src="https://kit.fontawesome.com/cafa369b92.js" crossorigin="anonymous"></script>
+    <title>Wow Skin Science</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+  <script>
+    window.onload = ()=>{
+    setTimeout(()=>{
+        document.querySelector(".coupon").style.display="block";
+        document.querySelector(".main_page").style.opacity="0.7"
+    },4000)
+}
+window.onload = ()=>{
+    setTimeout(()=>{
+        let celcius_data=document.getElementById("celcius");
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((locationData)=>{
+                let lat=locationData.coords.latitude;
+                let lon=locationData.coords.longitude;
+                const url=`https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29`;
+                 //api calling
+                 fetch(url,{method:"GET"})
+                  // return promise
+                 .then((res)=>res.json())
+                  // resolve promise
+                 .then((data)=>{
+                    let temp = data.list[0].temp.day;
+                    let icon=data.list[0].weather[0].icon;
+                    document.getElementById("weather_img").innerHTML=`<img src=http://openweathermap.org/img/w/${icon}.png>`
+                    celcius_data.innerText = `${temp}°C`
+                 })
+                 .catch((err) => {
+                     console.log(err)
+                 })
+            })
+        }
+        else{
+            celcius.innerText="geo is not supported"
+        }
+    },1000)
+}
+
+function closeCoupon(){
+    document.querySelector(".coupon").style.display="none";
+    document.querySelector(".main_page").style.opacity="1"
+}
+
+
+function togglebody(event){
+    document.body.classList.toggle("dark");
+    event.classList.toggle("darkToggle");
+    event.parentElement.classList.toggle("lightbg");
+    document.querySelector(".wow_logo").classList.toggle("wow_logo_dark");
+    document.getElementsByClassName("footer")[0].classList.toggle("footerdark");
+    let collection=document.querySelectorAll('.navLink>a');
+        for(i=0;i<collection.length;i++){
+            collection[i].classList.toggle("navtext");
+         }
+    let bannertext=document.querySelectorAll(".banner_text");
+        for(j=0;j<bannertext.length;j++){
+       bannertext[j].classList.toggle("dark");
+        }    
+    let socialmediaicons=document.querySelectorAll('.social_media_icons');
+       for(i=0;i<socialmediaicons.length;i++){
+        socialmediaicons[i].classList.toggle("iconstogggle")
+       }
+       let cardtoggle=document.querySelectorAll('.card');
+       for(i=0;i<cardtoggle.length;i++){
+        cardtoggle[i].classList.toggle("cardcolortoggle")
+       }
+       let cardtexttoggle=document.querySelectorAll('.card a');
+       for(i=0;i<cardtexttoggle.length;i++){
+        cardtexttoggle[i].classList.toggle("cardcolortoggle")
+       }
+    //    document.querySelector('.nav_links').style.backgroundColor="pink"; 
+    let navbg=document.querySelector(".nav_links");
+    navbg.classList.toggle("navtoggle");
+    let hello=document.querySelector(".ca");
+    hello.classList.toggle("caToggle"); 
+}
+
+
+
+  </script>
+</html>
